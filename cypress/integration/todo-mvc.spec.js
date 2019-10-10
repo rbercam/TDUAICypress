@@ -50,11 +50,17 @@ describe('testes e2e lista de tarefas', ()=>{
     for (i= 0; i < 10; i++) {
         addTodo(createTodo())
     }
+
+    })
+})
+
+// Testes a serem alterados utilizando actions.
+describe('testes e2e lista de tarefas', ()=>{
+    beforeEach(()=>{
+        visit()
     })
 
-    /* Testes a serem alterados utilizando actions.
-
-       it('validar nome da tarefa na lista', ()=>{
+    it('validar nome da tarefa na lista', ()=>{
         addTodo('Arrumar Quarto')
         checkLabelText(1,'Arrumar Quarto')
     })
@@ -71,7 +77,6 @@ describe('testes e2e lista de tarefas', ()=>{
         completeTodo(2)
         validateItemsLeft(1)
     })
-     */
 })
 
 
