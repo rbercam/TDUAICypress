@@ -11,7 +11,7 @@
   "author": "Rafael Berçam Medeiros",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^3.4.1",
+    "cypress": "^3.5.0",
     "faker": "^4.1.0"
   }
 }
