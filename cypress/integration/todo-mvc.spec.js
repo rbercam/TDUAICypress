@@ -1,81 +1,62 @@
 /// <reference types="Cypress" />
-import {
-    visit,
-    addTodo,
-    validateItemsLeft,
-    clearCompleted,
-    completeTodo,
-    checkLabelText,
-    checked,
-    textDecoration,
-    emptyTodoList,
-    destroyTodo,
-    checkPlaceHolder
-} from "../actions/todo-mvc.action";
 
-import { createTodo } from "../factory/todo-mvc.factory";
+import todoPage from '../actions/todo-mvc.action'
+import factoryPage from '../factory/todo-mvc.factory'
 
 describe('testes e2e lista de tarefas', ()=>{
     beforeEach(()=>{
-        visit()
-        addTodo(createTodo())
+        todoPage.visit()
+        todoPage.addTodo(factoryPage.createTodo())
     })
+
     it('validar placeholder', ()=>{
-        checkPlaceHolder('What needs to be done?')
+        todoPage.checkPlaceHolder('What needs to be done?')
     })
 
     it('validar se item da lista ta marcado', ()=>{
-        completeTodo(1)
-        checked(1)
+        todoPage.completeTodo(1)
+        todoPage.checked(1)
     })
 
     it('validar exclusão de item lista', ()=>{
-        destroyTodo(1)
-        emptyTodoList()
+        todoPage.destroyTodo(1)
+        todoPage.emptyTodoList()
     })
 
     it('validar texto cortado após selecionar tarefa', ()=>{
-        completeTodo(1)
-        textDecoration(1)
+        todoPage.completeTodo(1)
+        todoPage.textDecoration(1)
     })
 
     it('validar lista vazia', ()=>{
-        completeTodo(1)
-        clearCompleted()
-        emptyTodoList()
+        todoPage.completeTodo(1)
+        todoPage.clearCompleted()
+        todoPage.emptyTodoList()
     })
 
    it('gerar lista aleatória', ()=>{
     var i;
     for (i= 0; i < 10; i++) {
-        addTodo(createTodo())
+        todoPage.addTodo(factoryPage.createTodo())
     }
-
-    })
-})
-
-// Testes a serem alterados utilizando actions.
-describe('testes e2e lista de tarefas', ()=>{
-    beforeEach(()=>{
-        visit()
     })
 
     it('validar nome da tarefa na lista', ()=>{
-        addTodo('Arrumar Quarto')
-        checkLabelText(1,'Arrumar Quarto')
+        todoPage.addTodo('Arrumar quarto')
+        todoPage.checkLabelText(2,'Arrumar quarto')
     })
 
     it('validar quantidade de items restantes', ()=>{
-        addTodo('Arrumar Quarto')
-        validateItemsLeft(1)
-        addTodo('Lavar louça')
-        validateItemsLeft(2)
-        addTodo('Passar as roupas')
-        validateItemsLeft(3)
-        completeTodo(1)
-        validateItemsLeft(2)
-        completeTodo(2)
-        validateItemsLeft(1)
+        todoPage.addTodo('Arrumar quarto')
+        todoPage.validateItemsLeft(2)
+        todoPage.addTodo('Lavar louça')
+        todoPage.validateItemsLeft(3)
+        todoPage.addTodo('Passar as roupas')
+        todoPage.validateItemsLeft(4)
+        todoPage.completeTodo(1)
+        todoPage.validateItemsLeft(3)
+        todoPage.completeTodo(2)
+        todoPage.validateItemsLeft(2)
     })
 })
 
